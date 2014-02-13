@@ -114,7 +114,8 @@ class DoctrineOrmServiceProvider
             $configs = new \Pimple();
             foreach ($app['orm.ems.options'] as $name => $options) {
                 $config = new Configuration;
-
+                $config->addCustomStringFunction('TSQUERY', 'LeosAddress\Doctrine\Expr\TsqueryFunction');
+                
                 $app['orm.cache.configurer']($name, $config, $options);
 
                 $config->setProxyDir($app['orm.proxies_dir']);
